@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section CSS
+    {
+    <style>
+        p {
+            background-color: red;
+            border: gold revert 3px;
+            corlor: blue;
+            border-radius: 50px
+        }
+    </style>
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table id="tableEmployee" class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年資</th>
+                <th>薪水</th>
+            </tr>
+
+        </thead>
+        <tbody>
+
+
+        </tbody>
+
+    </table>
+
+
+</div>
+@section Scripts
+    {
+    <script>
+         $('.display-4').css('background-color', 'yellow')
+         let data = {
+             "emps": [
+                { "name": "Tom", "workYears": 3, "salary": 45000 },
+                 { "name": "Jack", "workYears": 5, "salary": 55000 },
+                 { "name": "Mary", "workYears": 7, "salary": 65000 }
+             ]
+         }
+         // for (let prop in data) {
+         //     console.log(prop)
+         //     for (let value of data[prop]) {
+         //         console.log(value.name);
+         //         console.log(value.workYears);
+         //         console.log(value.salary);
+         //     }
+         // }
+
+         let datas = data.emps.map(employee => {
+            let { name, workYears, salary } = employee
+             return (
+
+                 `
+                 <tr>
+                        <td>${name}</td>
+                        <td>${workYears}</td>
+                                <td>${salary}</td>
+                 </tr>
+                     `
+                
+
+             )
+
+         })
+        document.querySelector('#tableEmployee>tbody').innerHTML = datas.join("");
+    </script>
+}

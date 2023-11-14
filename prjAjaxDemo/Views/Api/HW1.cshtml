@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "HW1";
+}
+
+<h1>HW1</h1>
+
+<div id="HW1" class="card-group">
+    
+</div>
+
+<script src="~/datas/travel.js"></script>
+@section Scripts
+    {
+
+    <script>
+        
+        
+        let datas = spots.CommonFormat.Section.map(
+            employee => {
+                let { CAT1, CAT2, stitle, xbody, idpt, xpostDate, file } = employee;
+                var imgSrc = file && file.img && file.img[0] && file.img[0].text;
+            return (
+
+                `
+
+                        
+
+
+            <img src="${imgSrc}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">${CAT1}: ${CAT2}</h5>
+            <p class="card-text" > ${xbody} < /p>
+            </div>
+            <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${stitle}</li>
+                        <li class="list-group-item">${xpostDate}</li>
+                        <li class="list-group-item">${idpt}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+            
+                `
+            )
+
+        })
+                document.querySelector('#HW1').innerHTML = datas.join("");
+    </script>
+
+}
