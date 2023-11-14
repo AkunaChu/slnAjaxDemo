@@ -4,7 +4,7 @@
 
 <h1>HW1</h1>
 
-<div id="HW1" class="card-group">
+<div id="HW1" class="row row-cols-1 row-cols-md-3 g-4">
     
 </div>
 
@@ -22,25 +22,16 @@
             return (
 
                 `
-
-                        
-
-
-            <img src="${imgSrc}" class="card-img-top" alt="...">
-            <div class="card-body">
+          
+          <div class="col">
+          <div class="card">
+          <img src="${imgSrc}" class="card-img-top" alt="...">
+          <div class="card-body">
             <h5 class="card-title">${CAT1}: ${CAT2}</h5>
-            <p class="card-text" > ${xbody} < /p>
-            </div>
-            <ul class="list-group list-group-flush">
-                        <li class="list-group-item">${stitle}</li>
-                        <li class="list-group-item">${xpostDate}</li>
-                        <li class="list-group-item">${idpt}</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-            
+            <p class="card-text">${xbody}</p>
+          </div>
+          </div>
+                  </div>
                 `
             )
 
