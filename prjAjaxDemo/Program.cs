@@ -1,9 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using prjAjaxDemo.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<DemoContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DemoConnection")));
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +26,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Api}/{action=HW1}/{id?}");
+    pattern: "{controller=Home}/{action=register}/{id?}");
 
 app.Run();
