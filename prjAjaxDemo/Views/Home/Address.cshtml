@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Address";
+}
+
+<h1>Address</h1>
+
+<select id="selectCity">
+</select>
+<select id="selectDist">
+</select>
+<select id="selectRoad">
+</select>
+
+@section Scripts{
+    <script>
+        const selCity = document.querySelector('#selectCity');
+        const selectDist = document.querySelector('#selectDist');
+        const selectRoad = document.querySelector('#selectRoad');
+
+
+        selCity.addEventListener("change", () => { loadDistricts ()});
+        selectDist.addEventListener("change", () => { loadRoads() });
+
+        function loadCity() {
+            //ajax
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', () => {
+                const datas = JSON.parse(xhr.responseText);
+                const cities = datas.map(city => `<option id='${city}'>${city}</option>`)
+                selCity.innerHTML = cities.join("");
+                loadDistricts();
+            })
+            xhr.open('GET', '@Url.Content("~/api/cities")');
+            xhr.send()
+
+        }
+
+        function loadDistricts() {
+            //ajax
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', () => {
+                const datas = JSON.parse(xhr.responseText);
+                const districts = datas.map(districts => `<option value='${districts}'>${districts}</option>`)
+                selectDist.innerHTML = districts.join("");
+                loadRoads();
+            })
+            xhr.open('Get', `@Url.Content("~/api/districts")?city=${selCity.value}`);
+            xhr.send()
+        }
+        loadCity();
+        
+        function loadRoads()  {
+            //ajax
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', () => {
+                const datas = JSON.parse(xhr.responseText);
+                const roads = datas.map(roads => `<option value='${roads}'>${roads}</option>`)
+                selectRoad.innerHTML = roads.join("");
+            })
+            xhr.open('GET', `@Url.Content("~/api/Road")?siteid=${selectDist.value}`);
+            xhr.send()
+        }
+
+        
+        
+    </script>
+}

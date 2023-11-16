@@ -45,7 +45,6 @@ public partial class DemoContext : DbContext
         {
             entity.HasKey(e => e.MemberId);
 
-            entity.Property(e => e.MemberId).ValueGeneratedNever();
             entity.Property(e => e.Email).HasMaxLength(200);
             entity.Property(e => e.FileName).HasMaxLength(50);
             entity.Property(e => e.Name).HasMaxLength(50);
